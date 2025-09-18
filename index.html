@@ -60,23 +60,24 @@
         <li class="dropdown">
          <a href="#testimonials" class="dropdown-toggle main-testi">
       <i class="bi bi-menu-button navicon"></i> 
-      <span>Testimonials</span> 
+      <span>Portfolio Highlight</span> 
       <i class="bi bi-chevron-down toggle-dropdown"></i>
       </a>
       <ul class="dropdown-menu">
-      <li><a href="#testi1" class="testi-link">Testimonial 1</a></li>
-      <li class="dropdown">
-        <a href="javascript:void(0)" class="dropdown-toggle">
-          <span>Deep Testimonials</span> 
-          <i class="bi bi-chevron-down toggle-dropdown"></i>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="#testi2" class="testi-link">Deep Testimonial 1</a></li>
-          <li><a href="#testi3" class="testi-link">Deep Testimonial 2</a></li>
-          <li><a href="#testi4" class="testi-link">Deep Testimonial 3</a></li>
-        </ul>
-      </li>
-      <li><a href="#testi5" class="testi-link">Testimonial 5</a></li>
+      <li><a href="#testi1" class="testi-link">Portfolio Highlight 1</a></li>
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropdown-toggle">
+    <span>Deep Portfolio Highlights </span> 
+    <i class="bi bi-chevron-down toggle-dropdown"></i>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="#testi2" class="testi-link">Deep Portfolio Highlight 2</a></li>
+    <li><a href="#testi3" class="testi-link">Deep Portfolio Highlight 3</a></li>
+    <li><a href="#testi4" class="testi-link">Deep Portfolio Highlight 4</a></li>
+  </ul>
+</li>
+<li><a href="#testi5" class="testi-link">Portfolio Highlight 5</a></li>
+
     </ul>
   </li>
 </li>
@@ -855,8 +856,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 <!-- Form kamu tetap seperti ini -->
 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-  <form id="google-form" class="php-email-form" action="https://formsubmit.co/rayzasix@gmail.com" method="POST">
-    <input type="hidden" name="_captcha" value="false">
+  <form id="google-form" class="php-email-form" action="https://formsubmit.co/rayzasix@gmail.com" method="POST"
+
     <div class="row gy-4">
       <div class="col-md-6">
         <label for="name-field" class="pb-2">Your Name</label>
@@ -888,7 +889,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </form>
 </div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById('google-form');
@@ -901,14 +901,16 @@ document.addEventListener("DOMContentLoaded", function() {
     errorMsg.style.display = 'none';
     sentMsg.style.display = 'none';
     
-    // Tampilkan "sent" cepat (0.1 detik)
+    // Biarkan form submit ke FormSubmit normal
+    // Tampilkan "sent" segera
     setTimeout(() => {
       loading.style.display = 'none';
       sentMsg.style.display = 'block';
-    }, 100);
+    }, 100); // 0.1 detik, hampir langsung
   });
 });
 </script>
+
 
   </main>
 
