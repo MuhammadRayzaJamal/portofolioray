@@ -855,16 +855,16 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 <!-- Form kamu tetap seperti ini -->
 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-  <form id="google-form" class="php-email-form">
+  <form id="google-form" class="php-email-form" action="https://formsubmit.co/rayzasix@gmail.com" method="POST">
     <div class="row gy-4">
       <div class="col-md-6">
         <label for="name-field" class="pb-2">Your Name</label>
-        <input type="text" name="user_name" id="name-field" class="form-control" required>
+        <input type="text" name="name" id="name-field" class="form-control" required>
       </div>
 
       <div class="col-md-6">
         <label for="email-field" class="pb-2">Your Email</label>
-        <input type="email" name="user_email" id="email-field" class="form-control" required>
+        <input type="email" name="email" id="email-field" class="form-control" required>
       </div>
 
       <div class="col-md-12">
@@ -878,9 +878,9 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
 
       <div class="col-md-12 text-center">
-        <div class="loading">Loading</div>
-        <div class="error-message"></div>
-        <div class="sent-message">Your message has been sent. Thank you!</div>
+        <div class="loading" style="display:none;">Loading</div>
+        <div class="error-message" style="display:none;"></div>
+        <div class="sent-message" style="display:none;">Your message has been sent. Thank you!</div>
 
         <button type="submit">Send Message</button>
       </div>
@@ -888,41 +888,22 @@ document.addEventListener("DOMContentLoaded", () => {
   </form>
 </div>
 
-<!-- Tambahkan script EmailJS -->
- <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
-  // Inisialisasi EmailJS
-  emailjs.init('IpmY4xbcGNBIpqBxm'); // Public Key
-
   const form = document.getElementById('google-form');
 
   form.addEventListener('submit', function(e) {
-    e.preventDefault();
+    const loading = form.querySelector('.loading');
+    const errorMsg = form.querySelector('.error-message');
+    const sentMsg = form.querySelector('.sent-message');
 
-    const formData = {
-      user_name: document.getElementById('name-field').value,
-      user_email: document.getElementById('email-field').value,
-      subject: document.getElementById('subject-field').value,
-      message: document.getElementById('message-field').value
-    };
-
-    // Kirim email
-    emailjs.send('service_tn86p38', 'template_q2k8n1h', formData)
-      .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-        form.querySelector('.sent-message').style.display = 'block';
-        form.querySelector('.error-message').style.display = 'none';
-        form.reset();
-      }, function(error) {
-        console.error('FAILED...', error);
-        form.querySelector('.error-message').textContent = 'Gagal mengirim pesan, coba lagi.';
-        form.querySelector('.error-message').style.display = 'block';
-        form.querySelector('.sent-message').style.display = 'none';
-      });
+    loading.style.display = 'block';
+    errorMsg.style.display = 'none';
+    sentMsg.style.display = 'none';
   });
 });
 </script>
+
 
         </div>
 
