@@ -856,7 +856,9 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
 <!-- Form kamu tetap seperti ini -->
 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-  <form id="google-form" class="php-email-form" action="https://formsubmit.co/rayzasix@gmail.com" method="POST"
+  <form id="google-form" class="php-email-form" 
+        action="https://formsubmit.co/rayzasix@gmail.com" 
+        method="POST">
 
     <div class="row gy-4">
       <div class="col-md-6">
@@ -889,6 +891,7 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </form>
 </div>
+
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById('google-form');
@@ -906,7 +909,7 @@ document.addEventListener("DOMContentLoaded", function() {
     setTimeout(() => {
       loading.style.display = 'none';
       sentMsg.style.display = 'block';
-    }, 100); // 0.1 detik, hampir langsung
+    }, 100); // 0.1 detik
   });
 });
 </script>
