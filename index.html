@@ -853,34 +853,28 @@ document.addEventListener("DOMContentLoaded", () => {
               <iframe   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d106.816975!3d-6.246298!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTQnNDguMSJTIDEwNsKwNDknMTAuMCJF!5e0!3m2!1sid!2sid!4v1694688000000!5m2!1sid!2sid" ></iframe>
             </div>
           </div>
+<!-- Form kamu tetap seperti ini -->
 <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-  <form 
-    id="google-form" 
-    class="php-email-form" 
-    action="https://docs.google.com/forms/d/e/1FAIpQLSdH58MdwtHq5VsiG3mmLTxcnjUahs58dXHUhcm2FvSB8ylWQw/formResponse" 
-    method="POST" 
-    target="hidden_iframe"
-  >
+  <form id="google-form" class="php-email-form">
     <div class="row gy-4">
-
       <div class="col-md-6">
         <label for="name-field" class="pb-2">Your Name</label>
-        <input type="text" name="Your Name.1234567890" id="name-field" class="form-control" required>
+        <input type="text" name="user_name" id="name-field" class="form-control" required>
       </div>
 
       <div class="col-md-6">
         <label for="email-field" class="pb-2">Your Email</label>
-        <input type="email" name="Your Email.0987654321" id="email-field" class="form-control" required>
+        <input type="email" name="user_email" id="email-field" class="form-control" required>
       </div>
 
       <div class="col-md-12">
         <label for="subject-field" class="pb-2">Subject</label>
-        <input type="text" name="entry.1122334455" id="subject-field" class="form-control" required>
+        <input type="text" name="subject" id="subject-field" class="form-control" required>
       </div>
 
       <div class="col-md-12">
         <label for="message-field" class="pb-2">Message</label>
-        <textarea name="entry.5566778899" id="message-field" rows="10" class="form-control" required></textarea>
+        <textarea name="message" id="message-field" rows="10" class="form-control" required></textarea>
       </div>
 
       <div class="col-md-12 text-center">
@@ -890,34 +884,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
         <button type="submit">Send Message</button>
       </div>
-
     </div>
   </form>
-
-  <!-- iframe tersembunyi agar user tidak pindah page -->
-  <iframe name="hidden_iframe" style="display:none;"></iframe>
 </div>
 
+<!-- Tambahkan script EmailJS -->
+ <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
-document.getElementById('google-form').addEventListener('submit', function(e){
-  e.preventDefault();
+document.addEventListener("DOMContentLoaded", function() {
+  // Inisialisasi EmailJS
+  emailjs.init('IpmY4xbcGNBIpqBxm'); // Public Key
 
-  var form = e.target;
-  var data = new FormData(form);
+  const form = document.getElementById('google-form');
 
-  fetch('https://docs.google.com/forms/d/e/YOUR_FORM_ID/formResponse', {
-    method: 'POST',
-    mode: 'no-cors',
-    body: data
-  }).then(function(){
-    form.querySelector('.sent-message').style.display = 'block';
-    form.reset();
-  }).catch(function(){
-    form.querySelector('.error-message').innerText = "There was an error sending your message.";
-    form.querySelector('.error-message').style.display = 'block';
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = {
+      user_name: document.getElementById('name-field').value,
+      user_email: document.getElementById('email-field').value,
+      subject: document.getElementById('subject-field').value,
+      message: document.getElementById('message-field').value
+    };
+
+    // Kirim email
+    emailjs.send('service_tn86p38', 'template_q2k8n1h', formData)
+      .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+        form.querySelector('.sent-message').style.display = 'block';
+        form.querySelector('.error-message').style.display = 'none';
+        form.reset();
+      }, function(error) {
+        console.error('FAILED...', error);
+        form.querySelector('.error-message').textContent = 'Gagal mengirim pesan, coba lagi.';
+        form.querySelector('.error-message').style.display = 'block';
+        form.querySelector('.sent-message').style.display = 'none';
+      });
   });
 });
 </script>
+
 
         </div>
 
