@@ -887,7 +887,6 @@ document.addEventListener("DOMContentLoaded", () => {
     </div>
   </form>
 </div>
-
 <script>
 document.addEventListener("DOMContentLoaded", function() {
   const form = document.getElementById('google-form');
@@ -896,17 +895,16 @@ document.addEventListener("DOMContentLoaded", function() {
   const sentMsg = form.querySelector('.sent-message');
 
   form.addEventListener('submit', function(e) {
-    // tampilkan loading
     loading.style.display = 'block';
     errorMsg.style.display = 'none';
     sentMsg.style.display = 'none';
-
-    // Biarkan form submit normal ke FormSubmit
-    // Tambahkan delay untuk simulasi loading
+    
+    // Biarkan form submit ke FormSubmit normal
+    // Tampilkan "sent" segera
     setTimeout(() => {
       loading.style.display = 'none';
       sentMsg.style.display = 'block';
-    }, 2000); // 2 detik simulasi
+    }, 100); // 0.1 detik, hampir langsung
   });
 });
 </script>
