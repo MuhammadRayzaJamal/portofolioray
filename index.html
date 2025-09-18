@@ -629,16 +629,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------- Inisialisasi Swiper ----------
   const swiper = new Swiper('.init-swiper', {
     loop: true,
-    speed: 1000, // transisi halus 1 detik
+    speed: 1000,
     autoplay: { 
-      delay: 2500, // auto geser lebih cepat
+      delay: 2500,
       disableOnInteraction: false
     },
-    slidesPerView: 1, // default mobile 1 slide
+    slidesPerView: 1,
     spaceBetween: 20,
     pagination: { 
-      el: '.swiper-pagination', 
-      clickable: true 
+      el: '.swiper-pagination',
+      clickable: true,
+      renderBullet: function (index, className) {
+        // membuat bullet 1-5 dari kiri ke kanan
+        return '<span class="' + className + '">' + (index + 1) + '</span>';
+      }
     },
     breakpoints: {
       320: { slidesPerView: 1 },
@@ -647,21 +651,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ---------- Helper: pindah ke slide dengan id ----------
+  // ---------- Helper pindah ke slide by ID ----------
   function goToTestiId(targetId) {
     const targetSlide = document.getElementById(targetId);
-    if (!targetSlide) {
-      console.warn('Target testimonial not found:', targetId);
-      return;
-    }
+    if (!targetSlide) return;
     const slides = Array.from(targetSlide.parentNode.children);
     const index = slides.indexOf(targetSlide);
-    if (index === -1) {
-      console.warn('Cannot find slide index for:', targetId);
-      return;
-    }
-    swiper.slideToLoop(index, 1000); // pindah halus
-    // scroll halus ke section testimonials
+    if (index === -1) return;
+    swiper.slideToLoop(index, 1000);
     const section = document.getElementById('testimonials');
     if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
@@ -686,9 +683,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // ---------- Toggle submenu ----------
   document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
     const href = toggle.getAttribute('href');
-    const isPureToggle = (!href) || href === 'javascript:void(0)' || href === '#'
-                         || toggle.dataset.toggle === 'submenu';
-
+    const isPureToggle = (!href) || href === 'javascript:void(0)' || href === '#' || toggle.dataset.toggle === 'submenu';
     if (isPureToggle) {
       toggle.addEventListener('click', function(e) {
         e.preventDefault();
@@ -712,8 +707,9 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 });
-
 </script>
+
+
 
 
     <!-- Testimonials Section -->

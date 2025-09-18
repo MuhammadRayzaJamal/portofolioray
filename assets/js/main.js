@@ -291,26 +291,10 @@ document.querySelectorAll('.dropdown-menu a[href^="#testi"]').forEach(link => {
     }
   });
 });
-// ---------- Helper: pindah ke slide dengan id ----------
-function goToTestiId(targetId) {
-  const targetSlide = document.getElementById(targetId);
-  if (!targetSlide) {
-    console.warn('Target testimonial not found:', targetId);
-    return;
-  }
-
-  // cari index asli dari slide berdasarkan semua slide Swiper (bukan parentNode)
-  const slides = Array.from(swiper.slides).filter(s => s.id); // hanya slide yg punya id
-  const index = slides.indexOf(targetSlide);
-
-  if (index === -1) {
-    console.warn('Cannot find slide index for:', targetId);
-    return;
-  }
-
-  swiper.slideToLoop(index, 1000); // pindah halus sesuai titik pagination
-
-  // scroll halus ke section testimonials
-  const section = document.getElementById('testimonials');
-  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-}
+const dropdownOrder = [
+  'testi1', // Testimonial 1
+  'testi2', // Deep Testimonial 1
+  'testi3', // Deep Testimonial 2
+  'testi4', // Deep Testimonial 3
+  'testi5'  // Testimonial 5
+];
