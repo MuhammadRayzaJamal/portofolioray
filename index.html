@@ -57,26 +57,33 @@
         <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
         <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
         <li><a href="#Showcase"><i class="bi bi-hdd-stack navicon"></i> Showcase</a></li>
-        <li class="dropdown"><a href="#"><i class="bi bi-menu-button navicon"></i> <span>Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="#">Dropdown 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Dropdown</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#">Deep Dropdown 1</a></li>
-                <li><a href="#">Deep Dropdown 2</a></li>
-                <li><a href="#">Deep Dropdown 3</a></li>
-                <li><a href="#">Deep Dropdown 4</a></li>
-                <li><a href="#">Deep Dropdown 5</a></li>
-              </ul>
-            </li>
-            <li><a href="#">Dropdown 2</a></li>
-            <li><a href="#">Dropdown 3</a></li>
-            <li><a href="#">Dropdown 4</a></li>
-          </ul>
-        </li>
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
-      </ul>
-    </nav>
+        <li class="dropdown">
+         <a href="#testimonials" class="dropdown-toggle main-testi">
+      <i class="bi bi-menu-button navicon"></i> 
+      <span>Testimonials</span> 
+      <i class="bi bi-chevron-down toggle-dropdown"></i>
+      </a>
+      <ul class="dropdown-menu">
+      <li><a href="#testi1" class="testi-link">Testimonial 1</a></li>
+      <li class="dropdown">
+        <a href="javascript:void(0)" class="dropdown-toggle">
+          <span>Deep Testimonials</span> 
+          <i class="bi bi-chevron-down toggle-dropdown"></i>
+        </a>
+        <ul class="dropdown-menu">
+          <li><a href="#testi2" class="testi-link">Deep Testimonial 1</a></li>
+          <li><a href="#testi3" class="testi-link">Deep Testimonial 2</a></li>
+          <li><a href="#testi4" class="testi-link">Deep Testimonial 3</a></li>
+        </ul>
+      </li>
+      <li><a href="#testi5" class="testi-link">Testimonial 5</a></li>
+    </ul>
+  </li>
+</li>
+
+
+<li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+
 
   </header>
 
@@ -616,115 +623,196 @@
       </div>
 
     </section><!-- /Services Section -->
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Testimonials</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-         <script>
+<script>
 document.addEventListener("DOMContentLoaded", () => {
-  new Swiper('.init-swiper', {
+
+  // ---------- Inisialisasi Swiper ----------
+  const swiper = new Swiper('.init-swiper', {
     loop: true,
-    speed: 600,
-    autoplay: {
-      delay: 5000
+    speed: 1000, // transisi halus 1 detik
+    autoplay: { 
+      delay: 2500, // auto geser lebih cepat
+      disableOnInteraction: false
     },
-    slidesPerView: 'auto',
-    pagination: {
-      el: '.swiper-pagination',
-      type: 'bullets',
-      clickable: true
+    slidesPerView: 1, // default mobile 1 slide
+    spaceBetween: 20,
+    pagination: { 
+      el: '.swiper-pagination', 
+      clickable: true 
     },
     breakpoints: {
-      320: { slidesPerView: 1, spaceBetween: 40 },
-      1200: { slidesPerView: 3, spaceBetween: 1 }
+      320: { slidesPerView: 1 },
+      768: { slidesPerView: 2 },
+      1200: { slidesPerView: 3 }
     }
   });
+
+  // ---------- Helper: pindah ke slide dengan id ----------
+  function goToTestiId(targetId) {
+    const targetSlide = document.getElementById(targetId);
+    if (!targetSlide) {
+      console.warn('Target testimonial not found:', targetId);
+      return;
+    }
+    const slides = Array.from(targetSlide.parentNode.children);
+    const index = slides.indexOf(targetSlide);
+    if (index === -1) {
+      console.warn('Cannot find slide index for:', targetId);
+      return;
+    }
+    swiper.slideToLoop(index, 1000); // pindah halus
+    // scroll halus ke section testimonials
+    const section = document.getElementById('testimonials');
+    if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // ---------- Tangani semua link menuju #testiX ----------
+  document.querySelectorAll('a[href^="#testi"]').forEach(a => {
+    a.addEventListener('click', function(e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      const targetId = href.startsWith('#') ? href.slice(1) : href;
+      goToTestiId(targetId);
+
+      // tutup dropdown bila ada
+      document.querySelectorAll('.dropdown.active').forEach(dd => {
+        dd.classList.remove('active');
+        const sub = dd.querySelector('.dropdown-menu');
+        if (sub) sub.classList.remove('dropdown-active');
+      });
+    });
+  });
+
+  // ---------- Toggle submenu ----------
+  document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+    const href = toggle.getAttribute('href');
+    const isPureToggle = (!href) || href === 'javascript:void(0)' || href === '#'
+                         || toggle.dataset.toggle === 'submenu';
+
+    if (isPureToggle) {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const parentLi = this.closest('li');
+        parentLi.classList.toggle('active');
+        const subMenu = parentLi.querySelector('.dropdown-menu');
+        if (subMenu) subMenu.classList.toggle('dropdown-active');
+      });
+    }
+  });
+
+  // ---------- Tutup dropdown bila klik di luar ----------
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.dropdown')) {
+      document.querySelectorAll('.dropdown.active').forEach(dd => {
+        dd.classList.remove('active');
+        const sub = dd.querySelector('.dropdown-menu');
+        if (sub) sub.classList.remove('dropdown-active');
+      });
+    }
+  });
+
 });
+
 </script>
 
-          <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                <h3>Saul Goodman</h3>
-                <h4>Ceo &amp; Founder</h4>
-              </div>
-            </div><!-- End testimonial item -->
+    <!-- Testimonials Section -->
+<section id="testimonials" class="testimonials section light-background">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                <h3>Sara Wilsson</h3>
-                <h4>Designer</h4>
-              </div>
-            </div><!-- End testimonial item -->
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Testimonials</h2>
+    <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+  </div><!-- End Section Title -->
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                <h3>Jena Karlis</h3>
-                <h4>Store Owner</h4>
-              </div>
-            </div><!-- End testimonial item -->
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                <h3>Matt Brandon</h3>
-                <h4>Freelancer</h4>
-              </div>
-            </div><!-- End testimonial item -->
+    <div class="swiper init-swiper">
+      <div class="swiper-wrapper">
 
-            <div class="swiper-slide">
-              <div class="testimonial-item">
-                <p>
-                  <i class="bi bi-quote quote-icon-left"></i>
-                  <span>Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.</span>
-                  <i class="bi bi-quote quote-icon-right"></i>
-                </p>
-                <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                <h3>John Larson</h3>
-                <h4>Entrepreneur</h4>
-              </div>
-            </div><!-- End testimonial item -->
-
+        <div class="swiper-slide" id="testi1">
+          <div class="testimonial-item">
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Responsible for managing Hitztar’s Instagram by consistently creating engaging visual content, writing captions that resonate with the audience, and ensuring brand identity is maintained across all social media platforms.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+            <a href="https://www.instagram.com/hitztar/" target="_blank">
+              <img src="assets/img/testimonials/testi 1.png" class="testimonial-img" alt="">
+            </a>
+            <h3>Hitztar</h3>
+            <h4>Instagram Content & Design Creator</h4>
           </div>
-          <div class="swiper-pagination"></div>
+        </div>
+
+        <div class="swiper-slide" id="testi2">
+          <div class="testimonial-item">
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Handled the creative management of Karang Taruna RT.015 by developing posters, event promotions, and social media layouts that not only informed but also inspired participation from the youth in the community.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+            <a href="https://www.instagram.com/elyon_xxiv/" target="_blank">
+              <img src="assets/img/testimonials/testi2.png" class="testimonial-img" alt="">
+            </a>
+            <h3>Karang Taruna (Elyon_XXIV)</h3>
+            <h4>Instagram Designer</h4>
+          </div>
+        </div>
+
+        <div class="swiper-slide" id="testi3">
+          <div class="testimonial-item">
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Created and managed Instagram design content for the Youth Association of At-Taqwa Mosque, focusing on da'wah visuals, interactive posts, and informative announcements that connected with the younger generation.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+            <a href="https://www.instagram.com/ikria.attaqwa/" target="_blank">
+              <img src="assets/img/testimonials/testi3.png" class="testimonial-img" alt="">
+            </a>
+            <h3>Youth Association of At-Taqwa Mosque (IKRIA)</h3>
+            <h4>Instagram Designer</h4>
+          </div>
+        </div>
+
+        <div class="swiper-slide" id="testi4">
+          <div class="testimonial-item">
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Oversaw content production for TrendBlinkID, including short videos, infographics, and news highlights that boosted the channel’s engagement rate and attracted more viewers across multiple platforms.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+            <a href="https://www.policetube.com/@TrendBlinkID" target="_blank">
+              <img src="assets/img/testimonials/testi4.png" class="testimonial-img" alt="">
+            </a>
+            <h3>TrendBlinkID</h3>
+            <h4>Content Creator</h4>
+          </div>
+        </div>
+
+        <div class="swiper-slide" id="testi5">
+          <div class="testimonial-item">
+            <p>
+              <i class="bi bi-quote quote-icon-left"></i>
+              <span>Contributed to NineGlobal News channel by producing design and editorial content that highlighted trending global topics, ensuring information was delivered in a creative and visually appealing way to attract wider audiences.</span>
+              <i class="bi bi-quote quote-icon-right"></i>
+            </p>
+            <a href="https://www.policetube.com/@NineGlobal" target="_blank">
+              <img src="assets/img/testimonials/testi5.png" class="testimonial-img" alt="">
+            </a>
+            <h3>NineGlobal News</h3>
+            <h4>Content Creator</h4>
+          </div>
         </div>
 
       </div>
+      <div class="swiper-pagination"></div>
+    </div>
 
-    </section><!-- /Testimonials Section -->
+  </div>
+</section>
+
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -874,7 +962,6 @@ document.getElementById('google-form').addEventListener('submit', function(e){
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 

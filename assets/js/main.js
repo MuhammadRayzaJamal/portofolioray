@@ -1,4 +1,5 @@
 
+
 (function() {
   "use strict";
 
@@ -220,3 +221,96 @@
   document.addEventListener('scroll', navmenuScrollspy);
 
 })();
+// Toggle mobile nav dropdowns
+document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
+  navmenu.addEventListener('click', function(e) {
+    e.preventDefault(); // Hanya hentikan klik icon dropdown
+    e.stopPropagation(); // Hentikan bubbling
+
+    // Toggle hanya pada parent li
+    const parentLi = this.closest('li');
+    parentLi.classList.toggle('active');
+
+    const subMenu = parentLi.querySelector('ul');
+    if(subMenu) subMenu.classList.toggle('dropdown-active');
+  });
+});
+
+// Biarkan link biasa (#testiX) tetap berfungsi
+document.querySelectorAll('.navmenu a[href^="#testi"]').forEach(link => {
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href').replace('#','');
+    const targetSlide = document.getElementById(targetId);
+    if(targetSlide){
+      const index = parseInt(targetSlide.getAttribute('data-slide'));
+      swiper.slideToLoop(index, 600);
+    }
+  });
+});
+// Toggle submenu dropdown
+document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+  toggle.addEventListener('click', function(e) {
+    e.preventDefault(); // hanya untuk toggle submenu
+    const parentLi = this.closest('li');
+    parentLi.classList.toggle('active');
+
+    const subMenu = parentLi.querySelector('.dropdown-menu');
+    if(subMenu) subMenu.classList.toggle('dropdown-active');
+  });
+});
+
+// Inisialisasi Swiper
+const swiper = new Swiper('.swiper', {
+  loop: true,
+  speed: 600,
+  autoplay: { delay: 5000 },
+  slidesPerView: "auto",
+  pagination: { el: ".swiper-pagination", clickable: true },
+});
+
+// Klik link menuju slide
+document.querySelectorAll('.dropdown-menu a[href^="#testi"]').forEach(link => {
+  link.addEventListener('click', function(e){
+    e.preventDefault();
+
+    const targetId = this.getAttribute('href').substring(1);
+    const targetSlide = document.getElementById(targetId);
+
+    if(targetSlide){
+      const index = Array.from(targetSlide.parentNode.children).indexOf(targetSlide);
+      swiper.slideToLoop(index, 600);
+
+      // Tutup semua dropdown setelah klik
+      document.querySelectorAll('.dropdown.active').forEach(dd => {
+        dd.classList.remove('active');
+        const sub = dd.querySelector('.dropdown-menu');
+        if(sub) sub.classList.remove('dropdown-active');
+      });
+    }
+  });
+});
+// ---------- Helper: pindah ke slide dengan id ----------
+function goToTestiId(targetId) {
+  const targetSlide = document.getElementById(targetId);
+  if (!targetSlide) {
+    console.warn('Target testimonial not found:', targetId);
+    return;
+  }
+
+  // cari index asli dari slide berdasarkan semua slide Swiper (bukan parentNode)
+  const slides = Array.from(swiper.slides).filter(s => s.id); // hanya slide yg punya id
+  const index = slides.indexOf(targetSlide);
+
+  if (index === -1) {
+    console.warn('Cannot find slide index for:', targetId);
+    return;
+  }
+
+  swiper.slideToLoop(index, 1000); // pindah halus sesuai titik pagination
+
+  // scroll halus ke section testimonials
+  const section = document.getElementById('testimonials');
+  if (section) section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}

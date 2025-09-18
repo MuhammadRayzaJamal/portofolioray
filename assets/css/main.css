@@ -939,15 +939,26 @@ section,
 }
 
 .testimonials .testimonial-item {
-  box-sizing: content-box;
+  box-sizing: border-box;
   text-align: center;
-  min-height: 320px;
+  min-height: 480px; /* disamakan untuk semua kotak */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #fff; /* atau tetap var(--surface-color) jika ingin sesuai tema */
+  border-radius: 12px;
 }
 
 .testimonials .testimonial-item .testimonial-img {
-  width: 90px;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
   border-radius: 50%;
-  margin: 0 auto;
+  margin-bottom: 15px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
 }
 
 .testimonials .testimonial-item h3 {
@@ -988,10 +999,12 @@ section,
   margin: 0 15px 15px 15px;
   padding: 20px;
   background-color: var(--surface-color);
-  position: relative;
-  margin-bottom: 35px;
   border-radius: 6px;
   box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  flex: 1; /* supaya kotak mengisi ruang dan presisi */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .testimonials .testimonial-item p::after {
@@ -1026,6 +1039,12 @@ section,
 .testimonials .swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--accent-color);
 }
+
+.testimonial-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
 
 /*--------------------------------------------------------------
 # Contact Section
@@ -1259,4 +1278,8 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+#header {
+  position: fixed;
+  z-index: 9999;
 }
