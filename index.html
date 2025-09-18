@@ -564,7 +564,7 @@
     </section><!-- /Portfolio Section -->
 
     <!-- Services Section -->
-    <section id="services" class="services section">
+    <section id="Showcase" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -629,31 +629,28 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 40
-                },
-                "1200": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 1
-                }
-              }
-            }
-          </script>
+         <script>
+document.addEventListener("DOMContentLoaded", () => {
+  new Swiper('.init-swiper', {
+    loop: true,
+    speed: 600,
+    autoplay: {
+      delay: 5000
+    },
+    slidesPerView: 'auto',
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+      clickable: true
+    },
+    breakpoints: {
+      320: { slidesPerView: 1, spaceBetween: 40 },
+      1200: { slidesPerView: 3, spaceBetween: 1 }
+    }
+  });
+});
+</script>
+
           <div class="swiper-wrapper">
 
             <div class="swiper-slide">
@@ -772,19 +769,24 @@
               <iframe   src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d106.816975!3d-6.246298!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTQnNDguMSJTIDEwNsKwNDknMTAuMCJF!5e0!3m2!1sid!2sid!4v1694688000000!5m2!1sid!2sid" ></iframe>
             </div>
           </div>
-
-     <div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
-  <form id="google-form" class="php-email-form">
+<div class="col-lg-7" data-aos="fade-up" data-aos-delay="200">
+  <form 
+    id="google-form" 
+    class="php-email-form" 
+    action="https://docs.google.com/forms/d/e/1FAIpQLSdH58MdwtHq5VsiG3mmLTxcnjUahs58dXHUhcm2FvSB8ylWQw/formResponse" 
+    method="POST" 
+    target="hidden_iframe"
+  >
     <div class="row gy-4">
 
       <div class="col-md-6">
         <label for="name-field" class="pb-2">Your Name</label>
-        <input type="text" name="entry.1234567890" id="name-field" class="form-control" required>
+        <input type="text" name="Your Name.1234567890" id="name-field" class="form-control" required>
       </div>
 
       <div class="col-md-6">
         <label for="email-field" class="pb-2">Your Email</label>
-        <input type="email" name="entry.0987654321" id="email-field" class="form-control" required>
+        <input type="email" name="Your Email.0987654321" id="email-field" class="form-control" required>
       </div>
 
       <div class="col-md-12">
@@ -807,6 +809,9 @@
 
     </div>
   </form>
+
+  <!-- iframe tersembunyi agar user tidak pindah page -->
+  <iframe name="hidden_iframe" style="display:none;"></iframe>
 </div>
 
 <script>
