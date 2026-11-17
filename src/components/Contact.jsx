@@ -1,0 +1,74 @@
+import { useState } from 'react'
+import { contact, profile } from '../data.js'
+import { Reveal, SectionHead } from './Reveal.jsx'
+import Icon from './Icon.jsx'
+
+export default function Contact() {
+  const [status, setStatus] = useState('idle') // idle | sending | sent | error
+
+  const submit = async (e) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    setStatus('sending')
+    try {
+      const res = await fetch(contact.endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
+      if (!res.ok) throw new Error('bad response')
+      form.reset()
+      setStatus('sent')
+    } catch {
+      setStatus('error')
+    }
+  }
+
+  const info = [
+    ['pin', 'Address', profile.address],
+    ['phone', 'Phone', profile.phone, `tel:${profile.phone}`],
+    ['mail', 'Email', profile.email, `mailto:${profile.email}`],
+    ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/rayzajml'],
+  ]
+
+  return (
+    <section id="contact" className="section section-dark">
+      <div className="wrap">
+        <SectionHead eyebrow="// 07 contact" title="Get in touch" intro="Have a project in mind, or just want to say hello? Send a message and I’ll get back to you soon." />
+        <div className="contact-grid">
+          <div className="contact-info">
+            {info.map(([icon, k, v, href], i) => (
+              <Reveal key={k} delay={i * 0.08} className="info-item">
+                <span className="info-icon"><Icon name={icon} size={18} /></span>
+                <div>
+                  <small>{k}</small>
+                  {href ? <a href={href}>{v}</a> : <p>{v}</p>}
+                </div>
+              </Reveal>
+            ))}
+            <Reveal className="map" delay={0.2}>
+              <iframe title="Map" src={contact.mapEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+            </Reveal>
+          </div>
+
+          <Reveal delay={0.1}>
+            <form className="form" onSubmit={submit}>
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_subject" value="New message from portfolio" />
+              <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
+              <div className="row2">
+                <label className="field"><input name="name" required placeholder="Your name" /><span>Name</span></label>
+                <label className="field"><input name="email" type="email" required placeholder="you@email.com" /><span>Email</span></label>
+              </div>
+              <label className="field"><input name="subject" required placeholder="How can I help?" /><span>Subject</span></label>
+              <label className="field"><textarea name="message" rows="6" required placeholder="Tell me about your project" /><span>Message</span></label>
+              <div className="form-foot">
+                <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Sending…' : 'Send message'}
+                </button>
+                {status === 'sent' && <p className="form-msg ok">Your message has been sent. Thank you!</p>}
+                {status === 'error' && <p className="form-msg err">Something went wrong — please email me directly.</p>}
+              </div>
+            </form>
+          </Reveal>
+        </div>
+      </div>
+    </section>
+  )
+}

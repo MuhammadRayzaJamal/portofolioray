@@ -1,0 +1,18 @@
+import { profile } from '../data.js'
+import { scrollToId } from '../lib.js'
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="wrap footer-row">
+        <p>© {new Date().getFullYear()} {profile.name}. All rights reserved.</p>
+        <div className="footer-links">
+          {profile.socials.map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
+          ))}
+        </div>
+        <button onClick={() => scrollToId('hero')}>Back to top ↑</button>
+      </div>
+    </footer>
+  )
+}
