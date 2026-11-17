@@ -1,5 +1,5 @@
 /* Dedicated mobile layout — app style, bottom tab bar */
-body:has(.m-tabbar) { padding-bottom: calc(76px + env(safe-area-inset-bottom)); }
+body:has(.m-tabbar) { padding-bottom: calc(66px + env(safe-area-inset-bottom) * .4); }
 main { display: block; }
 .m-top { position: fixed; top: 0; left: 0; right: 0; z-index: 90; display: flex; align-items: center; justify-content: space-between; height: 54px; padding: env(safe-area-inset-top) 16px 0; box-sizing: content-box; background: rgba(11,27,58,.96); backdrop-filter: blur(8px); color: #fff; }
 .m-top-brand { display: flex; align-items: center; gap: 10px; font-family: var(--head); font-weight: 700; font-size: .95rem; }
@@ -128,8 +128,8 @@ a.m-row:active { background: var(--bg-soft); }
 .m-msg.err { color: #b91c1c; }
 .m-foot { margin-top: 24px; text-align: center; font-size: .78rem; color: rgba(255,255,255,.5); }
 
-.m-tabbar { position: fixed; left: 12px; right: 12px; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 100; display: grid; grid-template-columns: repeat(5, 1fr); padding: 6px; border-radius: 20px; background: var(--topbar); backdrop-filter: blur(14px); border: 1px solid var(--line); box-shadow: 0 12px 32px -8px rgba(0,0,0,.45); }
-.m-tabbar button { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 52px; border-radius: 14px; color: var(--muted); font-size: .68rem; font-weight: 600; -webkit-tap-highlight-color: transparent; transition: color .2s; }
+.m-tabbar { position: fixed; left: 10px; right: 10px; bottom: calc(4px + env(safe-area-inset-bottom) * .4); z-index: 100; display: grid; grid-template-columns: repeat(5, 1fr); padding: 4px; border-radius: 20px; background: var(--topbar); backdrop-filter: blur(14px); border: 1px solid var(--line); box-shadow: 0 12px 32px -8px rgba(0,0,0,.45); }
+.m-tabbar button { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 46px; border-radius: 14px; color: var(--muted); font-size: .68rem; font-weight: 600; -webkit-tap-highlight-color: transparent; transition: color .2s; }
 .m-tabbar button.is-active { color: #fff; }
 .m-tabbar button > * { position: relative; z-index: 1; }
 .m-tab-bg { position: absolute !important; inset: 0; z-index: 0 !important; border-radius: 14px; background: var(--mark); }
