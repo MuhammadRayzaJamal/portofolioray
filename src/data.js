@@ -13,11 +13,11 @@ export const profile = {
   city: 'Jakarta, Indonesia',
   address: 'Jln Bangka III, Pela Mampang, Jakarta Selatan, Indonesia',
   website: 'muhammadrayzajamal.github.io',
-  instagram: '@rayzajml',
+  instagram: '@mhmmadrayza_j',
   education: 'Computer Engineering, Universitas Pamulang',
   freelance: 'Open to opportunities',
   socials: [
-    { label: 'Instagram', href: 'https://www.instagram.com/rayzajml' },
+    { label: 'Instagram', href: 'https://www.instagram.com/mhmmadrayza_j' },
     { label: 'GitHub', href: 'https://github.com/MuhammadRayzaJamal' },
     { label: 'LinkedIn', href: 'https://www.linkedin.com/in/rayza-jamal-6094012b7' },
     { label: 'X', href: 'https://x.com/RayzaJamal?t=mFSmi_ZUeHegIqQX6FHtLg&s=09' },

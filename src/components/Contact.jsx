@@ -2,29 +2,26 @@ import { useState } from 'react'
 import { contact, profile } from '../data.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
 import Icon from './Icon.jsx'
+import { composeMail } from '../lib.js'
 
 export default function Contact() {
   const [status, setStatus] = useState('idle') // idle | sending | sent | error
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault()
     const form = e.currentTarget
-    setStatus('sending')
-    try {
-      const res = await fetch(contact.endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
-      if (!res.ok) throw new Error('bad response')
-      form.reset()
-      setStatus('sent')
-    } catch {
-      setStatus('error')
-    }
+    window.open(composeMail(profile.email, form, false), '_blank', 'noopener')
+    form.reset()
+    setStatus('sent')
   }
 
+  const wa = `https://wa.me/${profile.phone.replace(/\D/g, '')}`
   const info = [
     ['pin', 'Address', profile.address],
     ['phone', 'Phone', profile.phone, `tel:${profile.phone}`],
+    ['chat', 'WhatsApp', 'Chat on WhatsApp', wa],
     ['mail', 'Email', profile.email, `mailto:${profile.email}`],
-    ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/rayzajml'],
+    ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/mhmmadrayza_j'],
   ]
 
   return (
@@ -60,10 +57,10 @@ export default function Contact() {
               <label className="field"><textarea name="message" rows="6" required placeholder="Tell me about your project" /><span>Message</span></label>
               <div className="form-foot">
                 <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Sending…' : 'Send message'}
+                  {status === 'sending' ? 'Opening…' : 'Send message'}
                 </button>
-                {status === 'sent' && <p className="form-msg ok">Your message has been sent. Thank you!</p>}
-                {status === 'error' && <p className="form-msg err">Something went wrong — please email me directly.</p>}
+                {status === 'sent' && <p className="form-msg ok">Gmail opened with your message ready — just press Send there. Thank you!</p>}
+                {status === 'error' && <p className="form-msg err">Couldn’t send — please <a href={`mailto:${profile.email}`}>email me</a> or <a href={wa} target="_blank" rel="noreferrer">message me on WhatsApp</a>.</p>}
               </div>
             </form>
           </Reveal>

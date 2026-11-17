@@ -1,3 +1,4 @@
+import { composeMail } from '../lib.js'
 import ThemeToggle from '../components/ThemeToggle.jsx'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
@@ -84,7 +85,7 @@ function About() {
     ['user', 'Education', profile.education],
     ['mail', 'Email', profile.email, `mailto:${profile.email}`],
     ['phone', 'Phone', profile.phone, `tel:${profile.phone}`],
-    ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/rayzajml'],
+    ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/mhmmadrayza_j'],
   ]
   return (
     <section id="m-about" className="m-section">
@@ -338,24 +339,19 @@ function Projects() {
 function Contact() {
   const [status, setStatus] = useState('idle')
   const wa = `https://wa.me/${profile.phone.replace(/\D/g, '')}`
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault()
     const form = e.currentTarget
-    setStatus('sending')
-    try {
-      const res = await fetch(contact.endpoint, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
-      if (!res.ok) throw new Error('bad')
-      form.reset()
-      setStatus('sent')
-    } catch {
-      setStatus('error')
-    }
+    const url = composeMail(profile.email, form, true)
+    form.reset()
+    setStatus('sent')
+    window.location.href = url
   }
   const actions = [
     ['WhatsApp', 'chat', wa],
     ['Email', 'mail', `mailto:${profile.email}`],
     ['Call', 'phone', `tel:${profile.phone}`],
-    ['Instagram', 'insta', 'https://www.instagram.com/rayzajml'],
+    ['Instagram', 'insta', 'https://www.instagram.com/mhmmadrayza_j'],
   ]
   return (
     <section id="m-contact" className="m-section m-dark">
@@ -382,8 +378,8 @@ function Contact() {
           <button className="m-btn m-btn-primary" type="submit" disabled={status === 'sending'}>
             {status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
-          {status === 'sent' && <p className="m-msg ok">Your message has been sent. Thank you!</p>}
-          {status === 'error' && <p className="m-msg err">Something went wrong — please use WhatsApp or email.</p>}
+          {status === 'sent' && <p className="m-msg ok">Your email app opened with the message ready — just press Send. Thank you!</p>}
+          {status === 'error' && <p className="m-msg err">Couldn’t send — please use the WhatsApp or Email button above.</p>}
         </form>
       </Fade>
       <p className="m-foot">© {new Date().getFullYear()} {profile.name}</p>
