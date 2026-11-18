@@ -167,3 +167,6 @@ a.m-row:active { background: var(--bg-soft); }
 
 .m-map { margin-top: 16px; border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,.14); }
 .m-map iframe { display: block; width: 100%; height: 220px; border: 0; }
+
+.m-cl-swipe { align-items: flex-start; }
+.m-cl-fig:has(img.is-wide), .m-cl-fig:has(img.is-phone) { align-self: flex-start; }
