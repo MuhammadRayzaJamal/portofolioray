@@ -384,6 +384,9 @@ function Contact() {
           {status === 'error' && <p className="m-msg err">{tr('Couldn’t send — please use the WhatsApp or Email button above.')}</p>}
         </form>
       </Fade>
+      <Fade className="m-map">
+        <iframe title={tr("Map")} src={contact.mapEmbed} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+      </Fade>
       <p className="m-foot">© {new Date().getFullYear()} {profile.name}</p>
     </section>
   )

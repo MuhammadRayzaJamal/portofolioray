@@ -201,6 +201,7 @@ export const ID = {
   'Shop home': 'Beranda toko',
   'LIVE product cart': 'Keranjang produk LIVE',
   'Categories': 'Kategori',
+  'Map': 'Peta',
   'Seller dashboard: all 31 pages analyzed (dashboard.cliploo.com)': 'Dashboard seller: seluruh 31 halaman dianalisis (dashboard.cliploo.com)',
   'Overview · 1': 'Ringkasan · 1',
   'Home: shop KPIs, Creator Studio, revenue chart, order status, recent orders, store health, stock alerts, best sellers.':
