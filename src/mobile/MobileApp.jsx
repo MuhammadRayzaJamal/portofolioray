@@ -380,8 +380,8 @@ function Contact() {
           <button className="m-btn m-btn-primary" type="submit" disabled={status === 'sending'}>
             {status === 'sending' ? tr('Sending…') : tr('Send message')}
           </button>
-          {status === 'sent' && <p className="m-msg ok">{tr('Your email app opened with the message ready — just press Send. Thank you!')}</p>}
-          {status === 'error' && <p className="m-msg err">{tr('Couldn’t send — please use the WhatsApp or Email button above.')}</p>}
+          {status === 'sent' && <p className="m-msg ok">{tr('Your email app opened with the message ready, just press Send. Thank you!')}</p>}
+          {status === 'error' && <p className="m-msg err">{tr('Couldn’t send, please use the WhatsApp or Email button above.')}</p>}
         </form>
       </Fade>
       <Fade className="m-map">

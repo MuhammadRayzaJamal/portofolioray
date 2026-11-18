@@ -18,8 +18,8 @@ export const ID = {
   'A Computer Engineering student who combines technical and creative skills.':
     'Mahasiswa Teknik Informatika yang memadukan kemampuan teknis dan kreatif.',
   'App builder and data analyst with a creative edge.': 'App builder dan data analyst dengan sentuhan kreatif.',
-  'I have experience building and analyzing applications, managing dashboards and data, and producing visual content — from graphic design and video editing to social media management.':
-    'Saya berpengalaman membangun dan menganalisis aplikasi, mengelola dashboard dan data, serta membuat konten visual — mulai dari desain grafis dan editing video hingga pengelolaan media sosial.',
+  'I have experience building and analyzing applications, managing dashboards and data, and producing visual content, from graphic design and video editing to social media management.':
+    'Saya berpengalaman membangun dan menganalisis aplikasi, mengelola dashboard dan data, serta membuat konten visual, mulai dari desain grafis dan editing video hingga pengelolaan media sosial.',
   'I am results-driven and comfortable working independently or in a team. I believe collaboration and innovation are the keys to outstanding results.':
     'Saya berorientasi pada hasil dan nyaman bekerja mandiri maupun dalam tim. Saya percaya kolaborasi dan inovasi adalah kunci hasil yang luar biasa.',
   'Computer Engineering, Universitas Pamulang': 'Teknik Informatika, Universitas Pamulang',
@@ -100,8 +100,8 @@ export const ID = {
   'Digital Entrepreneurship Innovative': 'Kewirausahaan Digital Inovatif',
 
   // ---- showcase
-  'The four areas where I contribute most — from shipping apps to turning data and visuals into results.':
-    'Empat bidang tempat saya paling berkontribusi — dari merilis aplikasi hingga mengubah data dan visual menjadi hasil nyata.',
+  'The four areas where I contribute most, from shipping apps to turning data and visuals into results.':
+    'Empat bidang tempat saya paling berkontribusi, dari merilis aplikasi hingga mengubah data dan visual menjadi hasil nyata.',
   'App Development': 'Pengembangan Aplikasi',
   'Planning features, building, testing and releasing apps, backed by a web and database toolkit.':
     'Merencanakan fitur, membangun, menguji, dan merilis aplikasi, didukung perangkat web dan basis data.',
@@ -124,8 +124,8 @@ export const ID = {
   // ---- featured
   'Featured project · 2026': 'Proyek unggulan · 2026',
   'App Development & Analysis · PT Cliploo Teknologi Interaktif': 'Pengembangan & Analisis Aplikasi · PT Cliploo Teknologi Interaktif',
-  'An Android app (APK) built end to end — from feature planning to release — with content and features powered by data I collected, cleaned and analyzed myself.':
-    'Aplikasi Android (APK) yang dibangun dari awal hingga akhir — dari perencanaan fitur sampai rilis — dengan konten dan fitur yang didukung data yang saya kumpulkan, bersihkan, dan analisis sendiri.',
+  'An Android app (APK) built end to end, from feature planning to release, with content and features powered by data I collected, cleaned and analyzed myself.':
+    'Aplikasi Android (APK) yang dibangun dari awal hingga akhir, dari perencanaan fitur sampai rilis, dengan konten dan fitur yang didukung data yang saya kumpulkan, bersihkan, dan analisis sendiri.',
   'Testing': 'Pengujian',
   'Plan': 'Rencana',
   'Defined the app’s features and what content it needed.': 'Menentukan fitur aplikasi dan konten yang dibutuhkan.',
@@ -184,8 +184,8 @@ export const ID = {
     'Akses cepat: Pesanan, Favorit, Alamat, Live, Video, Terlaris, Diskon, Mengikuti, Lokal, Voucher, Semua kategori.',
   'Promo banners, plus Cliploo Live and Cliploo Video lanes linked to products.':
     'Banner promo, ditambah jalur Cliploo Live dan Cliploo Video yang terhubung ke produk.',
-  'Product feed with discount labels, strikethrough prices, 1–2 day delivery estimates and seller location.':
-    'Feed produk dengan label diskon, harga coret, estimasi pengiriman 1–2 hari, dan lokasi penjual.',
+  'Product feed with discount labels, strikethrough prices, 1 to 2 day delivery estimates and seller location.':
+    'Feed produk dengan label diskon, harga coret, estimasi pengiriman 1 sampai 2 hari, dan lokasi penjual.',
   '“Most viewed” label, cart, chat and Seller Center access.': 'Label “Paling banyak dilihat”, keranjang, chat, dan akses Seller Center.',
   'LIVE list': 'Daftar LIVE',
   'Tabs: All, Top creators, Shopping, plus a Start LIVE button.': 'Tab: Semua, Kreator teratas, Belanja, ditambah tombol Mulai LIVE.',
@@ -202,6 +202,10 @@ export const ID = {
   'LIVE product cart': 'Keranjang produk LIVE',
   'Categories': 'Kategori',
   'Map': 'Peta',
+  '2024 to 2025': '2024 sampai 2025',
+  '2021 to 2022': '2021 sampai 2022',
+  '2020 to 2022': '2020 sampai 2022',
+  '2017 to 2019': '2017 sampai 2019',
   'Seller dashboard: all 31 pages analyzed (dashboard.cliploo.com)': 'Dashboard seller: seluruh 31 halaman dianalisis (dashboard.cliploo.com)',
   'Overview · 1': 'Ringkasan · 1',
   'Home: shop KPIs, Creator Studio, revenue chart, order status, recent orders, store health, stock alerts, best sellers.':
@@ -280,13 +284,13 @@ export const ID = {
   'Send message': 'Kirim pesan',
   'Opening…': 'Membuka…',
   'Sending…': 'Mengirim…',
-  'Gmail opened with your message ready — just press Send there. Thank you!':
-    'Gmail terbuka dengan pesanmu sudah terisi — tinggal tekan Kirim di sana. Terima kasih!',
-  'Your email app opened with the message ready — just press Send. Thank you!':
-    'Aplikasi email terbuka dengan pesanmu sudah terisi — tinggal tekan Kirim. Terima kasih!',
-  'Couldn’t send — please use the WhatsApp or Email button above.':
-    'Gagal mengirim — silakan pakai tombol WhatsApp atau Email di atas.',
-  'Couldn’t send — please ': 'Gagal mengirim — silakan ',
+  'Gmail opened with your message ready, just press Send there. Thank you!':
+    'Gmail terbuka dengan pesanmu sudah terisi, tinggal tekan Kirim di sana. Terima kasih!',
+  'Your email app opened with the message ready, just press Send. Thank you!':
+    'Aplikasi email terbuka dengan pesanmu sudah terisi, tinggal tekan Kirim. Terima kasih!',
+  'Couldn’t send, please use the WhatsApp or Email button above.':
+    'Gagal mengirim, silakan pakai tombol WhatsApp atau Email di atas.',
+  'Couldn’t send, please ': 'Gagal mengirim, silakan ',
   'email me': 'email saya',
   ' or ': ' atau ',
   'message me on WhatsApp': 'chat saya via WhatsApp',

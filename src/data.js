@@ -38,7 +38,7 @@ export const about = {
   intro: 'A Computer Engineering student who combines technical and creative skills.',
   headline: 'App builder and data analyst with a creative edge.',
   lead:
-    'I have experience building and analyzing applications, managing dashboards and data, and producing visual content — from graphic design and video editing to social media management.',
+    'I have experience building and analyzing applications, managing dashboards and data, and producing visual content, from graphic design and video editing to social media management.',
   body:
     'I am results-driven and comfortable working independently or in a team. I believe collaboration and innovation are the keys to outstanding results.',
 }
@@ -85,7 +85,7 @@ export const resume = {
     },
     {
       title: 'Content & Dashboard Specialist',
-      period: '2024 — 2025',
+      period: '2024 to 2025',
       place: 'PT Bintang Data Prima Inovasi (HITZTAR)',
       points: [
         'Managed the dashboard, and designed and ran the Instagram account with a consistent content strategy.',
@@ -103,7 +103,7 @@ export const resume = {
     },
     {
       title: 'Film Production, Promo Videos & Coverage Projects',
-      period: '2021 — 2022',
+      period: '2021 to 2022',
       place: 'Vocational School',
       points: [
         'Helped produce three films and promotional videos for the school as cameraman, synopsis writer, and editing contributor, and played a lead role in a film for an inter-vocational school competition.',
@@ -120,13 +120,13 @@ export const resume = {
     },
     {
       title: 'Multimedia',
-      period: '2020 — 2022',
+      period: '2020 to 2022',
       place: 'SMK Cyber Media',
       text: 'Graphic design, video editing, web development, and film and ad production.',
     },
     {
       title: 'Junior High School',
-      period: '2017 — 2019',
+      period: '2017 to 2019',
       place: 'SMP Negeri 141',
     },
   ],
@@ -154,7 +154,7 @@ export const portfolio = {
 }
 
 export const showcase = {
-  intro: 'The four areas where I contribute most — from shipping apps to turning data and visuals into results.',
+  intro: 'The four areas where I contribute most, from shipping apps to turning data and visuals into results.',
   items: [
     {
       id: 'build',
@@ -198,7 +198,7 @@ export const featured = {
   label: 'Featured project · 2026',
   title: 'Cliploo',
   role: 'App Development & Analysis · PT Cliploo Teknologi Interaktif',
-  text: 'An Android app (APK) built end to end — from feature planning to release — with content and features powered by data I collected, cleaned and analyzed myself.',
+  text: 'An Android app (APK) built end to end, from feature planning to release, with content and features powered by data I collected, cleaned and analyzed myself.',
   tags: ['Android APK', 'Node.js', 'Web scraping', 'Data analysis', 'Testing'],
   steps: [
     { title: 'Plan', text: 'Defined the app’s features and what content it needed.' },
@@ -345,7 +345,7 @@ cliploo.categories = ['Coffee 11', 'Imitation jewelry 8', 'Baby girl 2', 'Baby b
 cliploo.platform = {
   title: 'Cliploo Shop & LIVE (what I analyzed)',
   groups: [
-    { name: 'Shop page', items: ['Product search with keyword suggestions.', 'Quick access: Orders, Favorites, Addresses, Live, Video, Best sellers, Discounts, Following, Local, Vouchers, All categories.', 'Promo banners, plus Cliploo Live and Cliploo Video lanes linked to products.', 'Product feed with discount labels, strikethrough prices, 1–2 day delivery estimates and seller location.', '“Most viewed” label, cart, chat and Seller Center access.'] },
+    { name: 'Shop page', items: ['Product search with keyword suggestions.', 'Quick access: Orders, Favorites, Addresses, Live, Video, Best sellers, Discounts, Following, Local, Vouchers, All categories.', 'Promo banners, plus Cliploo Live and Cliploo Video lanes linked to products.', 'Product feed with discount labels, strikethrough prices, 1 to 2 day delivery estimates and seller location.', '“Most viewed” label, cart, chat and Seller Center access.'] },
     { name: 'LIVE list', items: ['Tabs: All, Top creators, Shopping, plus a Start LIVE button.', 'LIVE cards show LIVE badge, rank, Shopping label, title, viewer count and host.'] },
     { name: 'LIVE room', items: ['Host profile with likes and Follow button, viewer count, share and close.', 'Pinned product card with discount, price and Buy button.', 'LIVE chat, comments, likes, shopping cart and gift sending.', 'Purple cart with 8 LIVE products: LIVE voucher with Claim, product search, numbering, discounts, “Special LIVE Price” label, Show/Ask, add to cart and Buy Now.'] },
   ],

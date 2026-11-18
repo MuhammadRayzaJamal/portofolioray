@@ -60,8 +60,8 @@ export default function Contact() {
                 <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
                   {status === 'sending' ? t('Opening…') : t('Send message')}
                 </button>
-                {status === 'sent' && <p className="form-msg ok">{t('Gmail opened with your message ready — just press Send there. Thank you!')}</p>}
-                {status === 'error' && <p className="form-msg err">{t('Couldn’t send — please ')}<a href={`mailto:${profile.email}`}>{t('email me')}</a>{t(' or ')}<a href={wa} target="_blank" rel="noreferrer">{t('message me on WhatsApp')}</a>.</p>}
+                {status === 'sent' && <p className="form-msg ok">{t('Gmail opened with your message ready, just press Send there. Thank you!')}</p>}
+                {status === 'error' && <p className="form-msg err">{t('Couldn’t send, please ')}<a href={`mailto:${profile.email}`}>{t('email me')}</a>{t(' or ')}<a href={wa} target="_blank" rel="noreferrer">{t('message me on WhatsApp')}</a>.</p>}
               </div>
             </form>
           </Reveal>
