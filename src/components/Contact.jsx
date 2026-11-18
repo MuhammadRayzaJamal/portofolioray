@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { t } from '../i18n.js'
 import { contact, profile } from '../data.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
 import Icon from './Icon.jsx'
@@ -17,17 +18,17 @@ export default function Contact() {
 
   const wa = `https://wa.me/${profile.phone.replace(/\D/g, '')}`
   const info = [
-    ['pin', 'Address', profile.address],
-    ['phone', 'Phone', profile.phone, `tel:${profile.phone}`],
-    ['chat', 'WhatsApp', 'Chat on WhatsApp', wa],
-    ['mail', 'Email', profile.email, `mailto:${profile.email}`],
+    ['pin', t('Address'), profile.address],
+    ['phone', t('Phone'), profile.phone, `tel:${profile.phone}`],
+    ['chat', 'WhatsApp', t('Chat on WhatsApp'), wa],
+    ['mail', t('Email'), profile.email, `mailto:${profile.email}`],
     ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/mhmmadrayza_j'],
   ]
 
   return (
     <section id="contact" className="section section-dark">
       <div className="wrap">
-        <SectionHead eyebrow="// 07 contact" title="Get in touch" intro="Have a project in mind, or just want to say hello? Send a message and I’ll get back to you soon." />
+        <SectionHead eyebrow="// 07 contact" title={t('Get in touch')} intro={t('Have a project in mind, or just want to say hello? Send a message and I’ll get back to you soon.')} />
         <div className="contact-grid">
           <div className="contact-info">
             {info.map(([icon, k, v, href], i) => (
@@ -50,17 +51,17 @@ export default function Contact() {
               <input type="hidden" name="_subject" value="New message from portfolio" />
               <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
               <div className="row2">
-                <label className="field"><input name="name" required placeholder="Your name" /><span>Name</span></label>
-                <label className="field"><input name="email" type="email" required placeholder="you@email.com" /><span>Email</span></label>
+                <label className="field"><input name="name" required placeholder={t('Your name')} /><span>{t('Name')}</span></label>
+                <label className="field"><input name="email" type="email" required placeholder={t('you@email.com')} /><span>{t('Email')}</span></label>
               </div>
-              <label className="field"><input name="subject" required placeholder="How can I help?" /><span>Subject</span></label>
-              <label className="field"><textarea name="message" rows="6" required placeholder="Tell me about your project" /><span>Message</span></label>
+              <label className="field"><input name="subject" required placeholder={t('How can I help?')} /><span>{t('Subject')}</span></label>
+              <label className="field"><textarea name="message" rows="6" required placeholder={t('Tell me about your project')} /><span>{t('Message')}</span></label>
               <div className="form-foot">
                 <button className="btn btn-primary" type="submit" disabled={status === 'sending'}>
-                  {status === 'sending' ? 'Opening…' : 'Send message'}
+                  {status === 'sending' ? t('Opening…') : t('Send message')}
                 </button>
-                {status === 'sent' && <p className="form-msg ok">Gmail opened with your message ready — just press Send there. Thank you!</p>}
-                {status === 'error' && <p className="form-msg err">Couldn’t send — please <a href={`mailto:${profile.email}`}>email me</a> or <a href={wa} target="_blank" rel="noreferrer">message me on WhatsApp</a>.</p>}
+                {status === 'sent' && <p className="form-msg ok">{t('Gmail opened with your message ready — just press Send there. Thank you!')}</p>}
+                {status === 'error' && <p className="form-msg err">{t('Couldn’t send — please ')}<a href={`mailto:${profile.email}`}>{t('email me')}</a>{t(' or ')}<a href={wa} target="_blank" rel="noreferrer">{t('message me on WhatsApp')}</a>.</p>}
               </div>
             </form>
           </Reveal>

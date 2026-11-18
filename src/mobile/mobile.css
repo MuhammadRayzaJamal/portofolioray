@@ -161,3 +161,6 @@ a.m-row:active { background: var(--bg-soft); }
 :root[data-theme="light"] .m-chips-sm li { background: #fff; }
 .m-card, .m-list, .m-step, .m-slide, .m-acc-item, .m-edu-item, .m-cl-fig { border-color: var(--line); }
 .m-card h3 { color: var(--strong); }
+
+.m-top-lang { margin: 0 6px 0 auto; width: 40px; height: 40px; border-color: rgba(255,255,255,.22); color: #fff; font-size: .72rem; }
+.m-top-lang + .m-top-theme { margin-left: 0; }

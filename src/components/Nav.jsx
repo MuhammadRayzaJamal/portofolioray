@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { nav, profile } from '../data.js'
 import { ease, scrollToId } from '../lib.js'
 import ThemeToggle from './ThemeToggle.jsx'
+import LangToggle from './LangToggle.jsx'
+import { t } from '../i18n.js'
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
@@ -44,11 +46,11 @@ export default function Nav() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease }}
       >
-        <button className="brand" onClick={() => go('hero')} aria-label="Back to top">
+        <button className="brand" onClick={() => go('hero')} aria-label={t('Back to top')}>
           <span className="brand-mark">R</span>
           <span className="brand-name">{profile.name}</span>
         </button>
-        <nav className="topnav" aria-label="Primary">
+        <nav className="topnav" aria-label={t('Primary')}>
           {nav.slice(1).map((n) => (
             <button key={n.id} className={active === n.id ? 'is-active' : ''} onClick={() => go(n.id)}>
               {n.label}
@@ -58,8 +60,11 @@ export default function Nav() {
             </button>
           ))}
         </nav>
-        <ThemeToggle />
-        <button className="menu-btn" onClick={() => setOpen(!open)} aria-expanded={open} aria-label="Menu">
+        <div className="top-tools">
+          <LangToggle />
+          <ThemeToggle />
+        </div>
+        <button className="menu-btn" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={t('Menu')}>
           <span className={open ? 'is-open' : ''} />
           <span className={open ? 'is-open' : ''} />
         </button>

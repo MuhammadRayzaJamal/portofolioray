@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { t } from '../i18n.js'
 import { highlights } from '../data.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
 import Icon from './Icon.jsx'
@@ -9,16 +10,16 @@ export default function Highlights() {
   return (
     <section id="highlights" className="section">
       <div className="wrap hl-head">
-        <SectionHead eyebrow="// 06 collaborations" title="Collaborations" intro={highlights.intro} />
+        <SectionHead eyebrow="// 06 collaborations" title={t('Collaborations')} intro={highlights.intro} />
         <div className="hl-controls">
-          <button onClick={() => scroll(-1)} aria-label="Previous"><Icon name="left" /></button>
-          <button onClick={() => scroll(1)} aria-label="Next"><Icon name="right" /></button>
+          <button onClick={() => scroll(-1)} aria-label={t('Previous')}><Icon name="left" /></button>
+          <button onClick={() => scroll(1)} aria-label={t('Next')}><Icon name="right" /></button>
         </div>
       </div>
       <div className="hl-track" ref={track}>
         {highlights.items.map((h, i) => (
           <Reveal key={h.name} delay={i * 0.06} className="hl-card">
-            <a className="hl-img" href={h.href} target="_blank" rel="noreferrer" aria-label={`Open ${h.name}`}>
+            <a className="hl-img" href={h.href} target="_blank" rel="noreferrer" aria-label={t('Open ') + h.name}>
               <img src={h.img} alt={h.name} draggable="false" loading="lazy" />
             </a>
             <div className="hl-text">

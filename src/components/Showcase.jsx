@@ -1,4 +1,5 @@
 import { showcase } from '../data.js'
+import { t } from '../i18n.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
 import Icon from './Icon.jsx'
 
@@ -8,7 +9,7 @@ export default function Showcase() {
   return (
     <section id="expertise" className="section section-alt">
       <div className="wrap">
-        <SectionHead eyebrow="// 03 expertise" title="What I do" intro={showcase.intro} />
+        <SectionHead eyebrow="// 03 expertise" title={t('What I do')} intro={showcase.intro} />
         <div className="svc-grid">
           {showcase.items.map((s, i) => (
             <Reveal key={s.id} delay={i * 0.08} className="svc">

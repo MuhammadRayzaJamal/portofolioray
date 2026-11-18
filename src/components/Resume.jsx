@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { t } from '../i18n.js'
 import { motion, useScroll, useSpring } from 'framer-motion'
 import { resume } from '../data.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
@@ -39,13 +40,13 @@ export default function Resume() {
   return (
     <section id="resume" className="section section-alt">
       <div className="wrap">
-        <SectionHead eyebrow="// 04 experience" title="Experience & Education" intro={resume.intro} />
+        <SectionHead eyebrow="// 04 experience" title={t('Experience & Education')} intro={resume.intro} />
         <Reveal className="callout">
           <p>{resume.summary}</p>
         </Reveal>
         <div className="resume-cols">
-          <Timeline title="Professional Experience" items={resume.experience} />
-          <Timeline title="Education" items={resume.education} />
+          <Timeline title={t('Professional Experience')} items={resume.experience} />
+          <Timeline title={t('Education')} items={resume.education} />
         </div>
       </div>
     </section>

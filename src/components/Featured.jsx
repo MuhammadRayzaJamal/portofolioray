@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { t } from '../i18n.js'
 import { featured } from '../data.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
 
@@ -6,7 +7,7 @@ export default function Featured() {
   return (
     <section id="featured" className="section section-alt">
       <div className="wrap">
-        <SectionHead eyebrow="// 02 featured project" title="Building Cliploo, end to end" />
+        <SectionHead eyebrow="// 02 featured project" title={t('Building Cliploo, end to end')} />
         <div className="feat">
           <Reveal className="feat-main">
             <span className="feat-label">{featured.label}</span>

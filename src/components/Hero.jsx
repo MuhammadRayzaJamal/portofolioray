@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { t } from '../i18n.js'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { about, profile, stats } from '../data.js'
 import { Reveal, WordReveal } from './Reveal.jsx'
@@ -28,21 +29,21 @@ export default function Hero() {
         <div className="wrap hero-grid">
           <div className="hero-copy">
             <Reveal className="status-pill">
-              <i /> Open to opportunities
+              <i /> {t('Open to opportunities')}
             </Reveal>
             <WordReveal as="h1" className="hero-title" text={profile.name} delay={0.2} onMount />
             <Reveal className="hero-role" delay={0.1}>
-              App Builder <span>/</span> Data Analyst <span>/</span> Creative Media
+              {t('App Builder')} <span>/</span> {t('Data Analyst')} <span>/</span> {t('Creative Media')}
             </Reveal>
             <Reveal className="hero-lead" delay={0.15}>
               {about.lead}
             </Reveal>
             <Reveal className="hero-cta" delay={0.2}>
               <button className="btn btn-light" onClick={() => scrollToId('portfolio')}>
-                View projects <Icon name="arrow" size={16} />
+                {t('View projects')} <Icon name="arrow" size={16} />
               </button>
               <a className="btn btn-line" href={profile.cv} target="_blank" rel="noreferrer">
-                <Icon name="download" size={16} /> Download CV
+                <Icon name="download" size={16} /> {t('Download CV')}
               </a>
             </Reveal>
           </div>
@@ -91,7 +92,7 @@ export default function Hero() {
         </div>
 
         <div className="wrap clients">
-          <span>Worked with</span>
+          <span>{t('Worked with')}</span>
           <ul>
             {clients.map((c) => (
               <li key={c}>{c}</li>

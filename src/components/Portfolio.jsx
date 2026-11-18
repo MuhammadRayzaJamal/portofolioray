@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { t } from '../i18n.js'
 import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import { portfolio, cliploo } from '../data.js'
 import { Shots } from './Cliploo.jsx'
@@ -35,7 +36,7 @@ function Lightbox({ items, index, onClose, onIndex }) {
       aria-modal="true"
       aria-label={item.title}
     >
-      <button className="lb-close" onClick={onClose} aria-label="Close">
+      <button className="lb-close" onClick={onClose} aria-label={t('Close')}>
         ✕
       </button>
       <button
@@ -44,7 +45,7 @@ function Lightbox({ items, index, onClose, onIndex }) {
           e.stopPropagation()
           prev()
         }}
-        aria-label="Previous"
+        aria-label={t('Previous')}
       >
         ←
       </button>
@@ -54,7 +55,7 @@ function Lightbox({ items, index, onClose, onIndex }) {
           e.stopPropagation()
           next()
         }}
-        aria-label="Next"
+        aria-label={t('Next')}
       >
         →
       </button>
@@ -88,12 +89,12 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="section">
       <div className="wrap">
-        <SectionHead eyebrow="// 05 projects" title="Projects" intro={portfolio.intro} />
+        <SectionHead eyebrow="// 05 projects" title={t('Projects')} intro={portfolio.intro} />
 
         <Reveal className="filters" y={20}>
           {portfolio.filters.map((f) => (
             <button key={f} className={filter === f ? 'is-active' : ''} onClick={() => setFilter(f)}>
-              {f}
+              {t(f)}
               <sup>{f === 'All' ? portfolio.items.length : portfolio.items.filter((i) => i.cat === f).length}</sup>
             </button>
           ))}

@@ -1,5 +1,7 @@
 import { composeMail } from '../lib.js'
 import ThemeToggle from '../components/ThemeToggle.jsx'
+import LangToggle from '../components/LangToggle.jsx'
+import { t as tr } from '../i18n.js'
 import { useEffect, useState } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'framer-motion'
 import { about, cliploo, contact, featured, highlights, portfolio, profile, resume, showcase, skillGroups, stats } from '../data.js'
@@ -55,15 +57,15 @@ function Home() {
         {profile.name}
       </motion.h1>
       <motion.p className="m-role" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}>
-        App Builder · Data Analyst · Creative Media
+        {tr('App Builder')} · {tr('Data Analyst')} · {tr('Creative Media')}
       </motion.p>
       <motion.p className="m-lead" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease, delay: 0.4 }}>
         {about.lead}
       </motion.p>
       <motion.div className="m-cta" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, ease, delay: 0.5 }}>
-        <button className="m-btn m-btn-light" onClick={() => go('m-projects')}>View projects</button>
+        <button className="m-btn m-btn-light" onClick={() => go('m-projects')}>{tr('View projects')}</button>
         <a className="m-btn m-btn-line" href={profile.cv} target="_blank" rel="noreferrer">
-          <Icon name="download" size={16} /> Download CV
+          <Icon name="download" size={16} /> {tr('Download CV')}
         </a>
       </motion.div>
       <div className="m-stats">
@@ -81,15 +83,15 @@ function Home() {
 /* ---------- About ---------- */
 function About() {
   const facts = [
-    ['pin', 'Location', profile.city],
-    ['user', 'Education', profile.education],
-    ['mail', 'Email', profile.email, `mailto:${profile.email}`],
-    ['phone', 'Phone', profile.phone, `tel:${profile.phone}`],
+    ['pin', tr('Location'), profile.city],
+    ['user', tr('Education'), profile.education],
+    ['mail', tr('Email'), profile.email, `mailto:${profile.email}`],
+    ['phone', tr('Phone'), profile.phone, `tel:${profile.phone}`],
     ['insta', 'Instagram', profile.instagram, 'https://www.instagram.com/mhmmadrayza_j'],
   ]
   return (
     <section id="m-about" className="m-section">
-      <Head kicker="// 01 about" title="About me" />
+      <Head kicker="// 01 about" title={tr('About me')} />
       <Fade className="m-card">
         <h3>{about.headline}</h3>
         <p>{about.lead}</p>
@@ -107,7 +109,7 @@ function About() {
         })}
       </Fade>
       <Fade className="m-card">
-        <h3 className="m-card-title">Skills & Tools</h3>
+        <h3 className="m-card-title">{tr('Skills & Tools')}</h3>
         {skillGroups.map((g) => (
           <div className="m-skillgroup" key={g.title}>
             <h4>{g.title}</h4>
@@ -126,7 +128,7 @@ function Work() {
   const [open, setOpen] = useState(0)
   return (
     <section id="m-work" className="m-section m-alt">
-      <Head kicker="// 02 featured" title="Building Cliploo" />
+      <Head kicker="// 02 featured" title={tr('Building Cliploo')} />
       <Fade className="m-feat">
         <span className="m-feat-label">{featured.label}</span>
         <p className="m-feat-role">{featured.role}</p>
@@ -144,7 +146,7 @@ function Work() {
         ))}
       </ol>
 
-      <Head kicker="// cliploo" title="App & dashboard analysis" />
+      <Head kicker="// cliploo" title={tr('App & dashboard analysis')} />
       {[cliploo.platform, cliploo.seller].map((blk) => (
         <div key={blk.title}>
           <h4 className="m-cl-h">{blk.title}</h4>
@@ -166,7 +168,7 @@ function Work() {
         </ul>
       </Fade>
 
-      <Head kicker="// 03 expertise" title="What I do" />
+      <Head kicker="// 03 expertise" title={tr('What I do')} />
       <div className="m-swipe">
         {showcase.items.map((s) => (
           <div className="m-slide m-svc" key={s.id}>
@@ -186,7 +188,7 @@ function Work() {
         ))}
       </div>
 
-      <Head kicker="// 04 experience" title="Experience" />
+      <Head kicker="// 04 experience" title={tr('Experience')} />
       <div className="m-acc">
         {resume.experience.map((e, i) => {
           const isOpen = open === i
@@ -218,7 +220,7 @@ function Work() {
         })}
       </div>
 
-      <h3 className="m-sub">Education</h3>
+      <h3 className="m-sub">{tr('Education')}</h3>
       <div className="m-edu">
         {resume.education.map((e) => (
           <Fade key={e.title} className="m-edu-item">
@@ -247,7 +249,7 @@ function Projects() {
 
   return (
     <section id="m-projects" className="m-section">
-      <Head kicker="// 05 projects" title="Projects" />
+      <Head kicker="// 05 projects" title={tr('Projects')} />
       <div className="m-filters">
         {portfolio.filters.map((f) => (
           <button key={f} className={filter === f ? 'is-active' : ''} onClick={() => setFilter(f)}>{f}</button>
@@ -273,7 +275,7 @@ function Projects() {
           ))}
         </AnimatePresence>
       </motion.div>
-      {[['App & dashboard analysis', cliploo.shots]].map(([t, list]) => (
+      {[[tr('App & dashboard analysis'), cliploo.shots]].map(([t, list]) => (
         <div key={t}>
           <h4 className="m-cl-h">{t}</h4>
           <div className="m-swipe m-cl-swipe">
@@ -287,7 +289,7 @@ function Projects() {
         </div>
       ))}
 
-      <Head kicker="// 06 collaborations" title="Collaborations" />
+      <Head kicker="// 06 collaborations" title={tr('Collaborations')} />
       <div className="m-swipe">
         {highlights.items.map((h) => (
           <a className="m-slide m-hl" key={h.name} href={h.href} target="_blank" rel="noreferrer">
@@ -304,7 +306,7 @@ function Projects() {
       <AnimatePresence>
         {view !== null && (
           <motion.div className="m-viewer" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25 }}>
-            <button className="m-viewer-close" onClick={() => setView(null)} aria-label="Close"><Icon name="close" /></button>
+            <button className="m-viewer-close" onClick={() => setView(null)} aria-label={tr('Close')}><Icon name="close" /></button>
             <AnimatePresence mode="wait" initial={false}>
               <motion.img
                 key={shown[view].img}
@@ -349,13 +351,13 @@ function Contact() {
   }
   const actions = [
     ['WhatsApp', 'chat', wa],
-    ['Email', 'mail', `mailto:${profile.email}`],
-    ['Call', 'phone', `tel:${profile.phone}`],
+    [tr('Email'), 'mail', `mailto:${profile.email}`],
+    [tr('Call'), 'phone', `tel:${profile.phone}`],
     ['Instagram', 'insta', 'https://www.instagram.com/mhmmadrayza_j'],
   ]
   return (
     <section id="m-contact" className="m-section m-dark">
-      <Head kicker="// 07 contact" title="Get in touch" />
+      <Head kicker="// 07 contact" title={tr('Get in touch')} />
       <div className="m-actions">
         {actions.map(([label, icon, href]) => (
           <Fade key={label}>
@@ -371,15 +373,15 @@ function Contact() {
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_subject" value="New message from portfolio" />
           <input type="text" name="_honey" style={{ display: 'none' }} tabIndex="-1" autoComplete="off" />
-          <input name="name" required placeholder="Your name" autoComplete="name" />
-          <input name="email" type="email" required placeholder="Your email" autoComplete="email" />
-          <input name="subject" required placeholder="Subject" />
-          <textarea name="message" rows="5" required placeholder="Your message" />
+          <input name="name" required placeholder={tr('Your name')} autoComplete="name" />
+          <input name="email" type="email" required placeholder={tr('Your email')} autoComplete="email" />
+          <input name="subject" required placeholder={tr('Subject')} />
+          <textarea name="message" rows="5" required placeholder={tr('Your message')} />
           <button className="m-btn m-btn-primary" type="submit" disabled={status === 'sending'}>
-            {status === 'sending' ? 'Sending…' : 'Send message'}
+            {status === 'sending' ? tr('Sending…') : tr('Send message')}
           </button>
-          {status === 'sent' && <p className="m-msg ok">Your email app opened with the message ready — just press Send. Thank you!</p>}
-          {status === 'error' && <p className="m-msg err">Couldn’t send — please use the WhatsApp or Email button above.</p>}
+          {status === 'sent' && <p className="m-msg ok">{tr('Your email app opened with the message ready — just press Send. Thank you!')}</p>}
+          {status === 'error' && <p className="m-msg err">{tr('Couldn’t send — please use the WhatsApp or Email button above.')}</p>}
         </form>
       </Fade>
       <p className="m-foot">© {new Date().getFullYear()} {profile.name}</p>
@@ -409,8 +411,9 @@ export default function MobileApp() {
         <button className="m-top-brand" onClick={() => go('m-home')}>
           <span>R</span> Rayza Jamal
         </button>
+        <LangToggle className="m-top-lang" />
         <ThemeToggle className="m-top-theme" />
-        <a className="m-top-cv" href={profile.cv} target="_blank" rel="noreferrer" aria-label="Download CV">
+        <a className="m-top-cv" href={profile.cv} target="_blank" rel="noreferrer" aria-label={tr('Download CV')}>
           <Icon name="download" size={18} />
         </a>
       </header>
@@ -421,12 +424,12 @@ export default function MobileApp() {
         <Projects />
         <Contact />
       </main>
-      <nav className="m-tabbar" aria-label="Primary">
+      <nav className="m-tabbar" aria-label={tr('Primary')}>
         {tabs.map((t) => (
           <button key={t.id} className={active === t.id ? 'is-active' : ''} onClick={() => go(t.id)}>
             {active === t.id && <motion.i layoutId="m-tab" className="m-tab-bg" transition={{ type: 'spring', stiffness: 400, damping: 32 }} />}
             <Icon name={t.icon} size={20} />
-            <span>{t.label}</span>
+            <span>{tr(t.label)}</span>
           </button>
         ))}
       </nav>

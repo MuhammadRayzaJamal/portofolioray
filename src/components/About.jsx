@@ -1,4 +1,5 @@
 import { useRef } from 'react'
+import { t } from '../i18n.js'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { about, profile, skillGroups } from '../data.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
@@ -9,17 +10,17 @@ export default function About() {
   const { scrollYProgress } = useScroll({ target: photoRef, offset: ['start end', 'end start'] })
   const py = useTransform(scrollYProgress, [0, 1], ['-6%', '6%'])
   const facts = [
-    ['Location', profile.city],
-    ['Education', profile.education],
-    ['Email', profile.email],
-    ['Phone', profile.phone],
-    ['Instagram', profile.instagram],
-    ['Status', profile.freelance],
+    [t('Location'), profile.city],
+    [t('Education'), profile.education],
+    [t('Email'), profile.email],
+    [t('Phone'), profile.phone],
+    [t('Instagram'), profile.instagram],
+    [t('Status'), profile.freelance],
   ]
   return (
     <section id="about" className="section">
       <div className="wrap">
-        <SectionHead eyebrow="// 01 about" title="About me" intro={about.intro} />
+        <SectionHead eyebrow="// 01 about" title={t('About me')} intro={about.intro} />
 
         <div className="about-grid">
           <Reveal className="about-photo">
@@ -47,7 +48,7 @@ export default function About() {
         </div>
 
         <Reveal className="card skills-card" delay={0.05}>
-          <h3 className="card-title">Skills & Tools</h3>
+          <h3 className="card-title">{t('Skills & Tools')}</h3>
           <div className="skill-groups">
             {skillGroups.map((g) => (
               <div className="skill-group" key={g.title}>

@@ -1,4 +1,5 @@
 import { cliploo } from '../data.js'
+import { t } from '../i18n.js'
 import { Reveal, SectionHead } from './Reveal.jsx'
 import Icon from './Icon.jsx'
 
@@ -53,7 +54,7 @@ export function Shots({ items }) {
   const phone = items.filter((x) => x.kind === 'phone')
   return (
     <Reveal className="cl-gal">
-      <h4>App & dashboard analysis</h4>
+      <h4>{t('App & dashboard analysis')}</h4>
       <div className="cl-wide">
         {wide.map((v) => (
           <figure key={v.img}><img src={v.img} alt={v.title} loading="lazy" /><figcaption><b>{v.title}</b></figcaption></figure>
